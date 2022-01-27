@@ -42,24 +42,36 @@ Post.init(
             primaryKey: true,
             autoIncrement: true
           },
-          title: {
+        title: {
             type: DataTypes.STRING,
             allowNull: false
           },
-          content: {
+        content: {
               type: DataTypes.STRING,
               allowNull: false,
               validate: {
                   len: [1],
               }
           },
-          user_id: {
+        user_id: {
             type: DataTypes.INTEGER,
             references: {
               model: 'user',
               key: 'id'
             }
-          }
+          },
+        grouping: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
+        event_name: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        event_dates: {
+            type: DataTypes.DATEONLY,
+            allowNull: true,
+        }
     },
     {
         sequelize,
