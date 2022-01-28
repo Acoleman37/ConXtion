@@ -31,7 +31,7 @@ User.init(
                 len: [6]
             }
         },
-        user_WIP: {
+        user_Wip: {
             type: DataTypes.STRING,
             allowNull: true,
         }
