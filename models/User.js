@@ -34,7 +34,7 @@ User.init(
         user_Wip: {
             type: DataTypes.STRING,
             allowNull: true,
-        }
+        },
     },
     {
     sequelize,
