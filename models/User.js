@@ -31,10 +31,10 @@ User.init(
                 len: [6]
             }
         },
-        WIP: {
+        wip: {
             type: DataTypes.STRING,
             allowNull: true,
-        }
+        },
     },
     {
     sequelize,
