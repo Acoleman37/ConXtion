@@ -6,10 +6,11 @@ require("dotenv").config();
 
 
 const oAuth2Client = new OAuth2(
-    process.env.Client_ID, process.env.Client_PW
+    '676837874195-0ttlh9fggd67pe2l211elulnq75n848f.apps.googleusercontent.com',
+    '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'
 );
 
-oAuth2Client.setCredentials({refresh_token: process.env.refresh_token});
+oAuth2Client.setCredentials({refresh_token: '1//04LfGCgAIoKyvCgYIARAAGAQSNwF-L9IrynY6zxNcdTjmRiYYOZOhnIfK-nxPFf_vGRRGSu3pY62_pzLBj1y4UujyWay1WgS_E1E'});
 
 const calendar = google.calendar({version: 'v3', auth: oAuth2Client });
 
@@ -49,3 +50,35 @@ const event = {
     // Color: bold red | ID: 11
 }
 
+calendar.freebusy.query(
+    {
+        resource: {
+            timeMin: eventStartTime,
+            timeMax: eventEndTime,
+            timeZone: 'America/California',
+            items: [{ id: 'primary' }],
+    },
+}, (err, res) => {
+    if (err) {
+        return console.error('Free Busy Query Error: ', err)
+    }
+
+    const eventsArr = res.data.calendars.primary.busy;
+
+    if (eventsArr.length === 0) {
+        return calendar.events.insert(
+            {
+                calendarId: 'primary',
+                resource: event
+            }, err => {
+                if (err) {
+                    console.error('Calendar Event Creation Error: ', err);
+                }
+
+                return console.log('Calendar Event Created');
+            })
+            
+        return console.log('Sorry I am busy');
+
+    }
+})
