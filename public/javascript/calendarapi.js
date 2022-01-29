@@ -4,12 +4,15 @@ const { google } = require('googleapis');
 const { OAuth2 } = google.auth;
 require("dotenv").config();
 
-
+// Couldnt get .env vars to work on my end
 const oAuth2Client = new OAuth2(
+    // Username
     '676837874195-0ttlh9fggd67pe2l211elulnq75n848f.apps.googleusercontent.com',
+    // Password
     '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'
 );
 
+// Refresh Token
 oAuth2Client.setCredentials({refresh_token: '1//04LfGCgAIoKyvCgYIARAAGAQSNwF-L9IrynY6zxNcdTjmRiYYOZOhnIfK-nxPFf_vGRRGSu3pY62_pzLBj1y4UujyWay1WgS_E1E'});
 
 const calendar = google.calendar({version: 'v3', auth: oAuth2Client });
@@ -17,7 +20,7 @@ const calendar = google.calendar({version: 'v3', auth: oAuth2Client });
 const eventStartTime = new Date()
 const eventEndTime = new Date()
 
-
+// + 2 means tomorrow
 eventStartTime.setDate(eventStartTime.getDate() + 2);
 eventEndTime.setDate(eventEndTime.getDate() + 2);
 eventEndTime.setMinutes(eventEndTime.getMinutes() + 45)
@@ -29,11 +32,11 @@ const event = {
     description: 'Meeting with David to talk about memes',
     start: {
         dateTime: eventStartTime,
-        timeZone: 'America/California'
+        timeZone: 'America/Los_Angeles'
     },
     end: {
         dateTime: eventEndTime,
-        timeZone: 'America/California'
+        timeZone: 'America/Los_Angeles'
     },
     // End of required info
     colorId: 1,
@@ -55,7 +58,7 @@ calendar.freebusy.query(
         resource: {
             timeMin: eventStartTime,
             timeMax: eventEndTime,
-            timeZone: 'America/California',
+            timeZone: 'America/Los_Angeles',
             items: [{ id: 'primary' }],
     },
 }, (err, res) => {
