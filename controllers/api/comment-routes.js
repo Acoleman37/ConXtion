@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
   });
 });
 
-//Create a comment
+//Create a comments
 router.post("/", withAuth, (req, res) => {
   if (req.session) {
     Comment.create({
