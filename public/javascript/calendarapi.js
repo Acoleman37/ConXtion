@@ -5,21 +5,23 @@ const { OAuth2 } = google.auth;
 require("dotenv").config();
 
 // Couldnt get .env vars to work on my end
-const oAuth2Client = new OAuth2(
-    // Username
-    '676837874195-0ttlh9fggd67pe2l211elulnq75n848f.apps.googleusercontent.com',
-    // Password
-    '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'
-);
 
-// Refresh Token
-oAuth2Client.setCredentials({refresh_token: '1//04LfGCgAIoKyvCgYIARAAGAQSNwF-L9IrynY6zxNcdTjmRiYYOZOhnIfK-nxPFf_vGRRGSu3pY62_pzLBj1y4UujyWay1WgS_E1E'});
+function eventCreation(year, month, day, eventTitle, eventDescription, eventlocation) {
 
-function eventCreation(year, month, day) {
+    const oAuth2Client = new OAuth2(
+        // Username
+        '676837874195-0ttlh9fggd67pe2l211elulnq75n848f.apps.googleusercontent.com',
+        // Password
+        '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'
+    );
+    
+    // Refresh Token
+    oAuth2Client.setCredentials({refresh_token: '1//04LfGCgAIoKyvCgYIARAAGAQSNwF-L9IrynY6zxNcdTjmRiYYOZOhnIfK-nxPFf_vGRRGSu3pY62_pzLBj1y4UujyWay1WgS_E1E'});
+    
     const calendar = google.calendar({version: 'v3', auth: oAuth2Client });
     //months start at 0, this lets the user use the regular month #
     month -= 1;
-    
+
     const eventStartTime = new Date(year, month, day)
     const eventEndTime = new Date(year, month, day)
     
@@ -30,9 +32,9 @@ function eventCreation(year, month, day) {
 
     const event = {
         // Required info
-        summary: 'Meeting with Dave',
-        location: '1750 Sepulveda Blvd Torrance, CA 90501',
-        description: 'Meeting with David to talk about memes',
+        summary: eventTitle,
+        location: eventlocation,
+        description: eventDescription,
         start: {
             dateTime: eventStartTime,
             timeZone: 'America/Los_Angeles'
@@ -90,4 +92,4 @@ function eventCreation(year, month, day) {
     })
 }
 
-eventCreation();
+module.exports = eventCreation();
