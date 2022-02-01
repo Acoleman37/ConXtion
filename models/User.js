@@ -11,12 +11,12 @@ User.init(
             primaryKey: true,
             autoIncrement: true
         },
-        user_username: {
+        username: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
         },
-        user_email: {
+        email: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
@@ -24,14 +24,14 @@ User.init(
                 isEmail: true
             }
         },
-        user_password: {
+        password: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [6]
             }
         },
-        user_WIP: {
+        wip: {
             type: DataTypes.STRING,
             allowNull: true,
         }

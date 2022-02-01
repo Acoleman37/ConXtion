@@ -26,12 +26,12 @@ Post.belongsToMany(User, {
     onDelete: 'SET NULL'
 });
 
-Vote.belongsToMany(User, {
+Vote.belongsTo(User, {
     foreignKey: 'user_id',
     onDelete: 'SET NULL'
 });
 
-Vote.belongsToMany(Post, {
+Vote.belongsTo(Post, {
     foreignKey: 'post_id',
     onDelete: 'SET NULL'
 });
