@@ -20,22 +20,22 @@ router.get("/", (req, res) => {
       },
     ],
   })
-  .then((dbPostData) => {
-    const posts = dbPostData.map((post) =>
-      post.get({
-        plain: true,
-      })
-    );
+    .then((dbPostData) => {
+      const posts = dbPostData.map((post) =>
+        post.get({
+          plain: true,
+        })
+      );
 
-    res.render("homepage", {
-      posts,
-      loggedIn: req.session.loggedIn,
+      res.render("homepage", {
+        posts,
+        loggedIn: req.session.loggedIn,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
     });
-  })
-  .catch((err) => {
-    console.log(err);
-    res.status(500).json(err);
-  });
 });
 
 router.get("/post/:id", (req, res) => {
@@ -59,27 +59,27 @@ router.get("/post/:id", (req, res) => {
       },
     ],
   })
-  .then((dbPostData) => {
-    if (!dbPostData) {
-      res.status(404).json({
-        message: "No post found with this id",
+    .then((dbPostData) => {
+      if (!dbPostData) {
+        res.status(404).json({
+          message: "No post found with this id",
+        });
+        return;
+      }
+
+      const post = dbPostData.get({
+        plain: true,
       });
-      return;
-    }
 
-    const post = dbPostData.get({
-      plain: true,
+      res.render("single-post", {
+        post,
+        loggedIn: req.session.loggedIn,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
     });
-
-    res.render("single-post", {
-      post,
-      loggedIn: req.session.loggedIn,
-    });
-  })
-  .catch((err) => {
-    console.log(err);
-    res.status(500).json(err);
-  });
 });
 
 router.get("/login", (req, res) => {
