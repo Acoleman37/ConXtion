@@ -1,0 +1,16 @@
+
+{{!-- {{> sidebar}} --}}
+{{!-- make post form --}}
+
+
+{{!-- feed here --}}
+<ul class="post-list">
+    {{#each posts as |post|}}
+    <li>
+        {{> post-info post }}
+    </li>
+    {{/each}}
+</ul>
+
+{{!-- front end javascript link here for making posts --}}
+<script src="/javascript/create-post.js"></script>
