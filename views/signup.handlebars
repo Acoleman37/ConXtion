@@ -1,50 +1,24 @@
-<div id="container-register">
-    <div id="title">
-        <i class="material-icons lock">lock</i> Register
+<section class="sign-in-page">
+    <div class="form-heading">
+        <h1>Sign Up</h1>
+    </div>
+    <div class="form-section">
+        <form class="signup-form">
+            <div>
+                <label for="username-signup">Select a Username</label>
+                <input type="text" class="entry-field" id="username-signup" />
+            </div>
+            <div>
+                <label for="password-signup">Select a password</label>
+                <input type="password" class="entry-field" id="password-signup" />
+            </div>
+            <div>
+                <button type="submit" class="login-signup-btn">Sign Up!</button>
+            </div>
+        </form>
     </div>
 
-    <form>
-        <div class="input">
-            <div class="input-addon">
-                <i class="material-icons">email</i>
-            </div>
-            <input id="email" placeholder="Email" type="email" required class="validate" autocomplete="off">
-        </div>
-
-        <div class="clearfix"></div>
-
-        <div class="input">
-            <div class="input-addon">
-                <i class="material-icons">face</i>
-            </div>
-            <input id="username" placeholder="Username" type="text" required class="validate" autocomplete="off">
-        </div>
-
-        <div class="clearfix"></div>
-
-        <div class="input">
-            <div class="input-addon">
-                <i class="material-icons">vpn_key</i>
-            </div>
-            <input id="password" placeholder="Password" type="password" required class="validate" autocomplete="off">
-        </div>
-
-        <div class="remember-me">
-            <input type="checkbox">
-            <span style="color: #DDD">I accept Terms of Service</span>
-        </div>
-
-        <input type="submit" value="Register" />
-    </form>
-
-    <div class="privacy">
-        <a href="#">Privacy Policy</a>
-    </div>
-
-    <div class="register">
-        Do you already have an account?
-        <a href="/login"><button id="register-link">Log In here</button></a>
-    </div>
-</div>
+    <a href="/login" class="login-link">log in instead</a>
+</section>
 
 <script src="/javascript/signup.js"></script>
