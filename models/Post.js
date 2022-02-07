@@ -63,6 +63,7 @@ Post.init(
         grouping: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
+            allowNull: true
         },
         event_name: {
             type: DataTypes.STRING,
